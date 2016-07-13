@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Personal website from Vera Ustariz">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Vera Ustariz</title>
+    <title>Vera Ustariz - $title$</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -42,32 +42,27 @@
       rel="stylesheet">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
   </head>
   <body>
     <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-back">
-          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="/index.html" title="go back" role="button">
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="index.html" title="go back" role="button">
             <i class="material-icons" role="presentation">arrow_back</i>
           </a>
         </div>
-        <div class="demo-blog__posts mdl-grid">
-          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__normal mdl-color-text--grey-50">
-              <h3>$title$</h3>
-            </div>
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-              <div>
-                <span>$date$</span>
-              </div>
-              <div class="section-spacer"></div>
-            </div>
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-              $body$
-            </div>
-          </div>
-
-        </div>
+        $body$
         <footer class="mdl-mini-footer">
           <div class="mdl-mini-footer--left-section">
                 <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter" onclick="location.href='https://twitter.com/odvera'">

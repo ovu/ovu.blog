@@ -2,15 +2,25 @@
 title: Home
 ---
 
-<h2>Welcome</h2>
-
-<img src="/images/haskell-logo.png" style="float: right; margin: 10px;" />
-
-<p>Welcome to my blog!</p>
-
-<p>I've reproduced a list of recent posts here for your reading pleasure:</p>
-
-<h2>Posts</h2>
-$partial("templates/post-list.html")$
-
-<p>…or you can find more in the <a href="/archive.html">archives</a>.</p>
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media mdl-color-text--grey-50">
+              <h3><a href="about.html">Vera Ustariz</a></h3>
+            </div>
+            <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+              Welcome to my website!
+            </div>
+          </div>
+          <!-- End of the welcome card -->
+          $partial("templates/post-list.html")$
+          <!-- Begin link for more items -->
+          <nav class="demo-nav mdl-cell mdl-cell--12-col">
+            <div class="section-spacer"></div>
+            <a href="archive.html" class="demo-nav__button" title="show more">
+              More
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons" role="presentation">arrow_forward</i>
+              </button>
+            </a>
+          </nav>
+        </div>
