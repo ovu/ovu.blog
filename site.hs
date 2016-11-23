@@ -5,8 +5,14 @@ import           Hakyll
 
 
 --------------------------------------------------------------------------------
+myConfiguration:: Configuration
+myConfiguration = defaultConfiguration 
+                  {
+                    destinationDirectory = "docs"
+                  }
+
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith myConfiguration $ do
     match "CNAME" $ do
         route   idRoute
         compile copyFileCompiler

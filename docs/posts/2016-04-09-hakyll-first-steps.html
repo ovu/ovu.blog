@@ -1,0 +1,136 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Personal website from Vera Ustariz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Vera Ustariz</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+        <div class="demo-back">
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="../index.html" title="go back" role="button">
+            <i class="material-icons" role="presentation">arrow_back</i>
+          </a>
+        </div>
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__normal mdl-color-text--grey-50">
+              <h3>Hakyll first steps</h3>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+              <div>
+                <span>April  9, 2016</span>
+              </div>
+              <div class="section-spacer"></div>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+              <p>I am really happy to start writing and even more to write something about hakyll.</p>
+<p>I was looking for a tool to generate static html content to publish my blog and I found some alternatives, I think the most famous is jekyll. It is a tool written in ruby that does exactly that, it generates static content. However, I found a really good alternative called hakyll, which is a a tool written in haskell that offers a DSL to define rules to generate html.</p>
+<p>I decided to use Hakyll because I wanted to practice some haskell and to use as well a serious project written in that language.</p>
+<p>My goal is to write my posts in markdown and to transform the files into html and to host the content in github. This first steps is what I am going to describe in this post.</p>
+<h4 id="installation-of-hakyll">Installation of Hakyll</h4>
+<p>Hakyll has a good documentation about the installation and first steps. In the website there are some <a href="https://jaspervdj.be/hakyll/tutorials.html">tutorials</a>. I will recommend to read them for the installation and understanding Hakyll.</p>
+<h4 id="creating-the-initial-structure-of-the-blog">Creating the initial structure of the blog</h4>
+<p>Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">hakyll</span> init</code></pre></div>
+<p>It will generate several files in the following structure:</p>
+<pre><code>$ tree
+.
+├── about.rst
+├── contact.markdown
+├── css
+│   └── default.css
+├── images
+│   └── haskell-logo.png
+├── index.html
+├── posts
+│   ├── 2012-08-12-spqr.markdown
+│   ├── 2012-10-07-rosa-rosa-rosam.markdown
+│   ├── 2012-11-28-carpe-diem.markdown
+│   └── 2012-12-07-tu-quoque.markdown
+├── site.hs
+└── templates
+    ├── archive.html
+    ├── default.html
+    ├── post-item.html
+    └── post.html</code></pre>
+<p>The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.</p>
+<p>The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.</p>
+<h4 id="serving-and-watching-files">Serving and watching files</h4>
+<p>Something I found really useful was that Hakyll provides a server that can be used to see how the generated pages will see when they are hosted. Not just that, Hakyll has a watch option that check for changes in the content and generate the html and host them immediately.</p>
+<p>To host the generated files and watch them while changing just execute the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> exec site watch</code></pre></div>
+<h4 id="bonus-publishing-in-github-pages">Bonus: publishing in github pages</h4>
+<p>By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.</p>
+<p>Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs</p>
+<pre><code>myConfiguration:: Configuration
+myConfiguration = defaultConfiguration 
+                  {
+                    destinationDirectory = &quot;docs&quot;
+                  }</code></pre>
+<p>The code above overwrites the default destination direcory of hakyll. Then we can use the configuration as follows:</p>
+<pre><code>main :: IO ()
+main = hakyllWith myConfiguration $ do
+       -- Here should come your rules</code></pre>
+<p>Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.</p>
+            </div>
+          </div>
+
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+                <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter" onclick="location.href='https://twitter.com/odvera'">
+                  <span class="visuallyhidden">Twitter</span>
+                </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__github" onclick="location.href='https://github.com/ovu'">
+              <span class="visuallyhidden">Github</span>
+            </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__linkedin" onclick="location.href='https://de.linkedin.com/in/omarvera'">
+              <span class="visuallyhidden">Linkedin</span>
+            </button>
+          </div>
+        </footer>
+      </main>
+      <div class="mdl-layout__obfuscator"></div>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </body>
+</html>
