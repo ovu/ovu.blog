@@ -41,6 +41,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/syntax.css">
   </head>
   <body>
     <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
@@ -72,26 +73,26 @@
 <p>Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">hakyll</span> init</code></pre></div>
 <p>It will generate several files in the following structure:</p>
-<pre><code>$ tree
-.
-├── about.rst
-├── contact.markdown
-├── css
-│   └── default.css
-├── images
-│   └── haskell-logo.png
-├── index.html
-├── posts
-│   ├── 2012-08-12-spqr.markdown
-│   ├── 2012-10-07-rosa-rosa-rosam.markdown
-│   ├── 2012-11-28-carpe-diem.markdown
-│   └── 2012-12-07-tu-quoque.markdown
-├── site.hs
-└── templates
-    ├── archive.html
-    ├── default.html
-    ├── post-item.html
-    └── post.html</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">tree</span>
+    <span class="kw">.</span>
+    ├── <span class="kw">about.rst</span>
+    ├── <span class="kw">contact.markdown</span>
+    ├── <span class="kw">css</span>
+    │   └── <span class="kw">default.css</span>
+    ├── <span class="kw">images</span>
+    │   └── <span class="kw">haskell-logo.png</span>
+    ├── <span class="kw">index.html</span>
+    ├── <span class="kw">posts</span>
+    │   ├── <span class="kw">2012-08-12-spqr.markdown</span>
+    │   ├── <span class="kw">2012-10-07-rosa-rosa-rosam.markdown</span>
+    │   ├── <span class="kw">2012-11-28-carpe-diem.markdown</span>
+    │   └── <span class="kw">2012-12-07-tu-quoque.markdown</span>
+    ├── <span class="kw">site.hs</span>
+    └── <span class="kw">templates</span>
+        ├── <span class="kw">archive.html</span>
+        ├── <span class="kw">default.html</span>
+        ├── <span class="kw">post-item.html</span>
+        └── <span class="kw">post.html</span></code></pre></div>
 <p>The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.</p>
 <p>The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.</p>
 <h4 id="serving-and-watching-files">Serving and watching files</h4>
@@ -101,15 +102,15 @@
 <h4 id="bonus-publishing-in-github-pages">Bonus: publishing in github pages</h4>
 <p>By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.</p>
 <p>Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs</p>
-<pre><code>myConfiguration:: Configuration
-myConfiguration = defaultConfiguration 
-                  {
-                    destinationDirectory = &quot;docs&quot;
-                  }</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    myConfiguration::</span> <span class="dt">Configuration</span>
+    myConfiguration <span class="fu">=</span> defaultConfiguration 
+                      {
+                        destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
+                      }</code></pre></div>
 <p>The code above overwrites the default destination direcory of hakyll. Then we can use the configuration as follows:</p>
-<pre><code>main :: IO ()
-main = hakyllWith myConfiguration $ do
-       -- Here should come your rules</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    main ::</span> <span class="dt">IO</span> ()
+    main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
+           <span class="co">-- Here should come your rules</span></code></pre></div>
 <p>Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.</p>
             </div>
           </div>

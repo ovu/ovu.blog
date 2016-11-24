@@ -23,12 +23,12 @@ Hakyll has a good documentation about the installation and first steps. In the w
 #### Creating the initial structure of the blog
 
 Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:
-```bash
+``` bash
     $ hakyll init
 ```
 
 It will generate several files in the following structure:
-
+``` bash
     $ tree
     .
     ├── about.rst
@@ -49,7 +49,7 @@ It will generate several files in the following structure:
         ├── default.html
         ├── post-item.html
         └── post.html
-
+```
 The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.
 
 The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.
@@ -60,7 +60,7 @@ Something I found really useful was that Hakyll provides a server that can be us
 
 To host the generated files and watch them while changing just execute the following command:
 
-```bash
+``` bash
 $ stack exec site watch
 ```
 
@@ -68,17 +68,19 @@ $ stack exec site watch
 By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.
 
 Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs
-
+``` haskell
     myConfiguration:: Configuration
     myConfiguration = defaultConfiguration 
                       {
                         destinationDirectory = "docs"
                       }
+```
 
 The code above overwrites the default destination direcory of hakyll. Then we can use the configuration as follows:
  
+``` haskell
     main :: IO ()
     main = hakyllWith myConfiguration $ do
            -- Here should come your rules
-
+```
 Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.
