@@ -10,3 +10,4 @@ Personal website
   stack build
 
   stack exec site build
+  stack exec site serve
