@@ -27,28 +27,28 @@ Hakyll has a really easy scaffolding feature. Inside the directory where the pag
 $ hakyll init
 ```
 
-It will generate several files in the following structure:
+After executing the command the following structure will be generated:
 ``` bash
-    $ tree
-    .
-    ├── about.rst
-    ├── contact.markdown
-    ├── css
-    │   └── default.css
-    ├── images
-    │   └── haskell-logo.png
-    ├── index.html
-    ├── posts
-    │   ├── 2012-08-12-spqr.markdown
-    │   ├── 2012-10-07-rosa-rosa-rosam.markdown
-    │   ├── 2012-11-28-carpe-diem.markdown
-    │   └── 2012-12-07-tu-quoque.markdown
-    ├── site.hs
-    └── templates
-        ├── archive.html
-        ├── default.html
-        ├── post-item.html
-        └── post.html
+$ tree
+.
+├── about.rst
+├── contact.markdown
+├── css
+│   └── default.css
+├── images
+│   └── haskell-logo.png
+├── index.html
+├── posts
+│   ├── 2012-08-12-spqr.markdown
+│   ├── 2012-10-07-rosa-rosa-rosam.markdown
+│   ├── 2012-11-28-carpe-diem.markdown
+│   └── 2012-12-07-tu-quoque.markdown
+├── site.hs
+└── templates
+      ├── archive.html
+      ├── default.html
+      ├── post-item.html
+      └── post.html
 ```
 The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.
 
@@ -84,3 +84,9 @@ main = hakyllWith myConfiguration $ do
        -- Here should come your rules
 ```
 Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.
+
+#### Conclusion
+Hakyll is a really good documented tool that can be used to generate static pages. It has a very intuitive DSL for defining the generation rules.
+At the beginning I mentioned I wanted to use it in order to practice Hakell, however it is not necessary to program in Haskell to have it running, at least in the first steps.
+
+Publishing the generated pages in github were easy as well. I will continue adding features to the blog and maybe I will discover more features of Hakyll and learn more about it.

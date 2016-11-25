@@ -72,27 +72,27 @@
 <h4 id="creating-the-initial-structure-of-the-blog">Creating the initial structure of the blog</h4>
 <p>Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">hakyll</span> init</code></pre></div>
-<p>It will generate several files in the following structure:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">tree</span>
-    <span class="kw">.</span>
-    ├── <span class="kw">about.rst</span>
-    ├── <span class="kw">contact.markdown</span>
-    ├── <span class="kw">css</span>
-    │   └── <span class="kw">default.css</span>
-    ├── <span class="kw">images</span>
-    │   └── <span class="kw">haskell-logo.png</span>
-    ├── <span class="kw">index.html</span>
-    ├── <span class="kw">posts</span>
-    │   ├── <span class="kw">2012-08-12-spqr.markdown</span>
-    │   ├── <span class="kw">2012-10-07-rosa-rosa-rosam.markdown</span>
-    │   ├── <span class="kw">2012-11-28-carpe-diem.markdown</span>
-    │   └── <span class="kw">2012-12-07-tu-quoque.markdown</span>
-    ├── <span class="kw">site.hs</span>
-    └── <span class="kw">templates</span>
-        ├── <span class="kw">archive.html</span>
-        ├── <span class="kw">default.html</span>
-        ├── <span class="kw">post-item.html</span>
-        └── <span class="kw">post.html</span></code></pre></div>
+<p>After executing the command the following structure will be generated:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tree</span>
+<span class="kw">.</span>
+├── <span class="kw">about.rst</span>
+├── <span class="kw">contact.markdown</span>
+├── <span class="kw">css</span>
+│   └── <span class="kw">default.css</span>
+├── <span class="kw">images</span>
+│   └── <span class="kw">haskell-logo.png</span>
+├── <span class="kw">index.html</span>
+├── <span class="kw">posts</span>
+│   ├── <span class="kw">2012-08-12-spqr.markdown</span>
+│   ├── <span class="kw">2012-10-07-rosa-rosa-rosam.markdown</span>
+│   ├── <span class="kw">2012-11-28-carpe-diem.markdown</span>
+│   └── <span class="kw">2012-12-07-tu-quoque.markdown</span>
+├── <span class="kw">site.hs</span>
+└── <span class="kw">templates</span>
+      ├── <span class="kw">archive.html</span>
+      ├── <span class="kw">default.html</span>
+      ├── <span class="kw">post-item.html</span>
+      └── <span class="kw">post.html</span></code></pre></div>
 <p>The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.</p>
 <p>The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.</p>
 <h4 id="serving-and-watching-files">Serving and watching files</h4>
@@ -112,6 +112,9 @@ myConfiguration <span class="fu">=</span> defaultConfiguration
 main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
        <span class="co">-- Here should come your rules</span></code></pre></div>
 <p>Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>Hakyll is a really good documented tool that can be used to generate static pages. It has a very intuitive DSL for defining the generation rules. At the beginning I mentioned I wanted to use it in order to practice Hakell, however it is not necessary to program in Haskell to have it running, at least in the first steps.</p>
+<p>Publishing the generated pages in github were easy as well. I will continue adding features to the blog and maybe I will discover more features of Hakyll and learn more about it.</p>
             </div>
           </div>
 
