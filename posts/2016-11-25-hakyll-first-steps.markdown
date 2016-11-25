@@ -24,7 +24,7 @@ Hakyll has a good documentation about the installation and first steps. In the w
 
 Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:
 ``` bash
-    $ hakyll init
+$ hakyll init
 ```
 
 It will generate several files in the following structure:
@@ -69,18 +69,18 @@ By default Hakyll generates the html files and css into a directory named _site.
 
 Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs
 ``` haskell
-    myConfiguration:: Configuration
-    myConfiguration = defaultConfiguration 
-                      {
-                        destinationDirectory = "docs"
-                      }
+myConfiguration:: Configuration
+myConfiguration = defaultConfiguration 
+                  {
+                    destinationDirectory = "docs"
+                  }
 ```
 
 The code above overwrites the default destination direcory of hakyll. Then we can use the configuration as follows:
  
 ``` haskell
-    main :: IO ()
-    main = hakyllWith myConfiguration $ do
-           -- Here should come your rules
+main :: IO ()
+main = hakyllWith myConfiguration $ do
+       -- Here should come your rules
 ```
 Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.

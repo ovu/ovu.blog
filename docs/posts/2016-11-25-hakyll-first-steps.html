@@ -58,7 +58,7 @@
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div>
-                <span>April  9, 2016</span>
+                <span>November 25, 2016</span>
               </div>
               <div class="section-spacer"></div>
             </div>
@@ -71,7 +71,7 @@
 <p>Hakyll has a good documentation about the installation and first steps. In the website there are some <a href="https://jaspervdj.be/hakyll/tutorials.html">tutorials</a>. I will recommend to read them for the installation and understanding Hakyll.</p>
 <h4 id="creating-the-initial-structure-of-the-blog">Creating the initial structure of the blog</h4>
 <p>Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">hakyll</span> init</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">hakyll</span> init</code></pre></div>
 <p>It will generate several files in the following structure:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">tree</span>
     <span class="kw">.</span>
@@ -102,15 +102,15 @@
 <h4 id="bonus-publishing-in-github-pages">Bonus: publishing in github pages</h4>
 <p>By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.</p>
 <p>Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    myConfiguration::</span> <span class="dt">Configuration</span>
-    myConfiguration <span class="fu">=</span> defaultConfiguration 
-                      {
-                        destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
-                      }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">myConfiguration::</span> <span class="dt">Configuration</span>
+myConfiguration <span class="fu">=</span> defaultConfiguration 
+                  {
+                    destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
+                  }</code></pre></div>
 <p>The code above overwrites the default destination direcory of hakyll. Then we can use the configuration as follows:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    main ::</span> <span class="dt">IO</span> ()
-    main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
-           <span class="co">-- Here should come your rules</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
+       <span class="co">-- Here should come your rules</span></code></pre></div>
 <p>Do not forget to configure the github pages to use the docs directory. And voila! You should have already you website.</p>
             </div>
           </div>

@@ -16,3 +16,10 @@ table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode
    .sourceCode span.fu { color: #06287e;  }
    .sourceCode span.re {  }
    .sourceCode span.er { color: red; font-weight: bold;  }
+
+ /* My changes for responsive design */
+   div.sourceCode {
+     width: 73%;
+     overflow: scroll;
+     padding-left: 10%;
+   }
