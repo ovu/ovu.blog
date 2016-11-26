@@ -54,6 +54,12 @@ The file site.hs contains the rules to convert the markdown files into html. The
 
 The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.
 
+In order to build the executable of the site.hs run the following command:
+
+``` bash
+$ stack build
+```
+
 #### Serving and watching files
 
 Something I found really useful was that Hakyll provides a server that can be used to see how the generated pages will see when they are hosted. Not just that, Hakyll has a watch option that check for changes in the content and generate the html and host them immediately.

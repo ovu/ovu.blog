@@ -95,6 +95,8 @@
       └── <span class="kw">post.html</span></code></pre></div>
 <p>The file site.hs contains the rules to convert the markdown files into html. The rules are described in a DSL written in haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.</p>
 <p>The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.</p>
+<p>In order to build the executable of the site.hs run the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> build</code></pre></div>
 <h4 id="serving-and-watching-files">Serving and watching files</h4>
 <p>Something I found really useful was that Hakyll provides a server that can be used to see how the generated pages will see when they are hosted. Not just that, Hakyll has a watch option that check for changes in the content and generate the html and host them immediately.</p>
 <p>To host the generated files and watch them while changing just execute the following command:</p>
