@@ -102,14 +102,14 @@
 <p>To host the generated files and watch them while changing just execute the following command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> exec site watch</code></pre></div>
 <h4 id="bonus-publishing-in-github-pages">Bonus: publishing in github pages</h4>
-<p>By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.</p>
-<p>Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs</p>
+<p>By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository or inside a docs directory. Note that according to the <a href="https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/">github pages</a> the name of the repository should not have the format <github name>.github.io.</p>
+<p>Hakyll is so easy to configure that it can be done in a simple way. Add a configuration variable in the file site.hs</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">myConfiguration::</span> <span class="dt">Configuration</span>
 myConfiguration <span class="fu">=</span> defaultConfiguration 
                   {
                     destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
                   }</code></pre></div>
-<p>The code above overwrites the default destination direcory of Hakyll. Then we can use the configuration as follows:</p>
+<p>The code above overwrites the default destination directory of Hakyll. Then we can use the configuration as follows:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
        <span class="co">-- Here should come your rules</span></code></pre></div>

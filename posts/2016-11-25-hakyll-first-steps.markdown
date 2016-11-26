@@ -71,9 +71,9 @@ $ stack exec site watch
 ```
 
 #### Bonus: publishing in github pages
-By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository with the name <github name>.github.io or inside a docs directory inside that repository.
+By default Hakyll generates the html files and css into a directory named _site. Github pages allow publishing in the root of a repository or inside a docs directory. Note that according to the [github pages](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/) the name of the repository should not have the format <github name>.github.io.
 
-Hakyll is so easy to configure that it can be done in a sample way. Add a configuration variable in the file site.hs
+Hakyll is so easy to configure that it can be done in a simple way. Add a configuration variable in the file site.hs
 ``` haskell
 myConfiguration:: Configuration
 myConfiguration = defaultConfiguration 
@@ -82,7 +82,7 @@ myConfiguration = defaultConfiguration
                   }
 ```
 
-The code above overwrites the default destination direcory of Hakyll. Then we can use the configuration as follows:
+The code above overwrites the default destination directory of Hakyll. Then we can use the configuration as follows:
  
 ``` haskell
 main :: IO ()
