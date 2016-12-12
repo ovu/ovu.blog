@@ -35,8 +35,11 @@ main = hakyllWith myConfiguration $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"   postCtx
-            -- >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+
+    match "posts/images/*" $ do
+        route idRoute
+        compile copyFileCompiler
 
     create ["archive.html"] $ do
         route idRoute

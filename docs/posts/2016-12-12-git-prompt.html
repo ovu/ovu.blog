@@ -1,0 +1,138 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Personal website from Vera Ustariz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Vera Ustariz</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+  </head>
+  <body>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+        <div class="demo-back">
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="../index.html" title="go back" role="button">
+            <i class="material-icons" role="presentation">arrow_back</i>
+          </a>
+        </div>
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__normal mdl-color-text--grey-50">
+              <h3>Introducing git prompt</h3>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+              <div>
+                <span>December 12, 2016</span>
+              </div>
+              <div class="section-spacer"></div>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+              <p>Some time ago I found a really good git prompt for bash, I think I grab it from <a href="https://github.com/magicmonty/bash-git-prompt/">here</a>.</p>
+<p>The installation of the bash git prompt was easy. It was needed to copy the .gitprompt.sh and gitstatus.py in the home directory and source the gitprompt.sh in the profile file. It works just good and it is well documented.</p>
+<p>What I like from the prompt is that the status shows besides the name of the branch the following information of a git repository.</p>
+<ul>
+<li>✔: repository clean</li>
+<li>●n: there are n staged files</li>
+<li>✖n: there are n files with merge conflicts</li>
+<li>✚n: there are n changed but unstaged files</li>
+<li>…n: there are n untracked files</li>
+</ul>
+<h4 id="porting-to-haskell">Porting to Haskell</h4>
+<p>As I mentioned before the previous program works just fine, but I decided to port the program written in Python in Haskell in order to practice the language and as the same time to understand what the Python script does. It is a good way to learn new stuff and I did learn some things while writing the program.</p>
+<p>The name of the project is git-prompt and the source code can be found <a href="https://github.com/ovu/git-prompt">here</a>.</p>
+<p>The result of the porting is shown in the following picture: <img src="./images/git-prompt.png" title="git-prompt" alt="alt text" /></p>
+<p>Git-prompt shows the current branch and its status. Actually the .gitprompt.sh does more than that, it shows the current time in hours and seconds and set the colors for the git-prompt. If you want to customize something in the colors or the style of the prompt, make the changes in the file .gitprompt.sh.</p>
+<h4 id="installation-of-git-prompt">Installation of git-prompt</h4>
+<p>The first step is to compile the git-prompt. Clone the git <a href="https://github.com/ovu/git-prompt">repository</a> and run the following command to compile it.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> build</code></pre></div>
+<p>Copy the compiled file git-prompt-exe into your home directory. Copy as well the file .gitprompt.sh from the repository into your home directory. You can do that running the following commands inside the git-prompt root directory.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> .stack-work/install/x86_64-osx/lts-7.12/8.0.1/bin/git-prompt-exe ~/
+$ <span class="kw">cp</span> .gitprompt.sh ~/</code></pre></div>
+<h4 id="performance-of-git-prompt">Performance of git-prompt</h4>
+<p>After porting the git prompt to Haskell, I measured how fast was the Haskell version compared with the original version written in Python. I made the measurements just to be sure I was not losing performance. Here is where I got a surprise because the Haskell version is faster. Here are the results:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">time</span> ~/git-prompt-exe 
+<span class="kw">master</span>
+<span class="kw">.</span>
+<span class="kw">0</span>
+<span class="kw">0</span>
+<span class="kw">3</span>
+<span class="kw">4</span>
+<span class="kw">0</span>
+
+<span class="kw">real</span>    0m0.045s
+<span class="kw">user</span>    0m0.017s
+<span class="kw">sys</span>     0m0.028s</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">time</span> ~/gitstatus.py 
+<span class="kw">master</span>
+<span class="kw">.</span>
+<span class="kw">0</span>
+<span class="kw">0</span>
+<span class="kw">3</span>
+<span class="kw">4</span>
+<span class="kw">0</span>
+
+<span class="kw">real</span>    0m0.077s
+<span class="kw">user</span>    0m0.036s
+<span class="kw">sys</span>     0m0.038s</code></pre></div>
+<p>After trying several times in different scenarios, I always got that the version written in Haskell was faster than the version in Python.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>After doing the porting, I realize that the code in Haskell is elegant. I hope it is not just something subjective. You can see the code and make your opinion. I think the data types make the code more readable. Git-prompt is faster than the original version, I guess it is because it is compiled. Although I used several data types and a library for the git commands, the Haskell compiler made a good job during compilation. Git-prompt is just a port to Haskell from the original version. I hope to introduce in the future new features or if you have a feature in mind do not bother to put a pull requests.</p>
+            </div>
+          </div>
+
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+                <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter" onclick="location.href='https://twitter.com/odvera'">
+                  <span class="visuallyhidden">Twitter</span>
+                </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__github" onclick="location.href='https://github.com/ovu'">
+              <span class="visuallyhidden">Github</span>
+            </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__linkedin" onclick="location.href='https://de.linkedin.com/in/omarvera'">
+              <span class="visuallyhidden">Linkedin</span>
+            </button>
+          </div>
+        </footer>
+      </main>
+      <div class="mdl-layout__obfuscator"></div>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </body>
+</html>
