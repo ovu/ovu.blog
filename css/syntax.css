@@ -23,3 +23,8 @@ table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode
      overflow: scroll;
      padding-left: 10%;
    }
+
+   pre.sourceCode {
+     background-color: #eeeeee;
+     padding: 5px;
+   }
