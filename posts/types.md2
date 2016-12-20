@@ -1,0 +1,7 @@
+What are types?
+
+Types are used during compilation, later they are not used.
+
+Compiled programming languages have the advantage they do not check types on runtime?
+
+Scripting languages require types on runtime.
