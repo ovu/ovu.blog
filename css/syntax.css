@@ -18,13 +18,12 @@ table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode
    .sourceCode span.er { color: red; font-weight: bold;  }
 
  /* My changes for responsive design */
-   div.sourceCode {
-     width: 73%;
-     overflow: scroll;
-     padding-left: 10%;
+   p.sourceCodeContainer {
+     width: 100%;
    }
-
-   pre.sourceCode {
+   div.sourceCode {
+     overflow: scroll;
      background-color: #eeeeee;
-     padding: 5px;
+     font-size: 14px;
+     padding: 0 5px 0 5px;
    }

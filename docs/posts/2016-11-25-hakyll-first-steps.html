@@ -138,5 +138,24 @@ main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</sp
       <div class="mdl-layout__obfuscator"></div>
     </div>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script>
+      <!-- Wrap the source code elements in a p element to support responsive -->
+      <!-- design and show source code always in width 100% -->
+      function wrap(el, wrapper) {
+            wrapper.setAttribute('class','sourceCodeContainer');
+            el.parentNode.insertBefore(wrapper, el);
+                wrapper.appendChild(el);
+
+      }
+
+      var elementsCollection = document.getElementsByClassName('sourceCode');
+      var elementsArray = [].slice.call(elementsCollection);
+      console.log(elementsArray.length);
+      elementsArray.forEach(function(element) {
+            if (element.nodeName === 'DIV') {
+              wrap(element, document.createElement('p'));
+            }
+          });
+    </script>
   </body>
 </html>
