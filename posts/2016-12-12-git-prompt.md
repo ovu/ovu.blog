@@ -24,7 +24,7 @@ The name of the project is git-prompt and the source code can be found [here](ht
 The result of the porting is shown in the following picture:
 ![alt text](./images/git-prompt.png "git-prompt")
 
-Git-prompt shows the current branch and its status. Actually the .gitprompt.sh does more than that, it shows the current time in hours and seconds and set the colors for the git-prompt. If you want to customize something in the colors or the style of the prompt, make the changes in the file .gitprompt.sh.
+Git-prompt shows the current branch and its status. Actually the .gitprompt.sh does more than that, it shows the current time in hours and minutes and set the colors for the git-prompt. If you want to customize something in the colors or the style of the prompt, make the changes in the file .gitprompt.sh.
 
 #### Installation of git-prompt
 The first step is to compile the git-prompt. Clone the git [repository](https://github.com/ovu/git-prompt) and run the following command to compile it.
