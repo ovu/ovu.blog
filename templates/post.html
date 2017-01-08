@@ -90,7 +90,6 @@
       <!-- Wrap the source code elements in a p element to support responsive -->
       <!-- design and show source code always in width 100% -->
       function wrap(el, wrapper) {
-            wrapper.setAttribute('class','sourceCodeContainer');
             el.parentNode.insertBefore(wrapper, el);
                 wrapper.appendChild(el);
 
@@ -101,9 +100,19 @@
       console.log(elementsArray.length);
       elementsArray.forEach(function(element) {
             if (element.nodeName === 'DIV') {
-              wrap(element, document.createElement('p'));
+              var newElement = document.createElement('p');
+              newElement.setAttribute('class','sourceCodeContainer');
+              wrap(element, newElement);
             }
           });
+      var allTitles = document.getElementsByTagName('h4');
+      var allTitlesArray = [].slice.call(allTitles);
+      allTitlesArray.forEach(function(element) {
+            var newElement = document.createElement('p');
+            newElement.setAttribute('class','post-subtitleContainer');
+            wrap(element, newElement);
+          });
+
     </script>
   </body>
 </html>
