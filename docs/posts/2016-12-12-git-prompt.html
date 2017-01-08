@@ -145,7 +145,6 @@ $ <span class="kw">cp</span> .gitprompt.sh ~/</code></pre></div>
 
       var elementsCollection = document.getElementsByClassName('sourceCode');
       var elementsArray = [].slice.call(elementsCollection);
-      console.log(elementsArray.length);
       elementsArray.forEach(function(element) {
             if (element.nodeName === 'DIV') {
               var newElement = document.createElement('p');
@@ -153,6 +152,7 @@ $ <span class="kw">cp</span> .gitprompt.sh ~/</code></pre></div>
               wrap(element, newElement);
             }
           });
+      <!-- Align subtitle (h4) to the left. Done by wrapping h4 in p elements -->
       var allTitles = document.getElementsByTagName('h4');
       var allTitlesArray = [].slice.call(allTitles);
       allTitlesArray.forEach(function(element) {
