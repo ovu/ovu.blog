@@ -1,5 +1,5 @@
 ---
-title: Hakyll first steps
+title: Building a blog with Hakyll
 author: Omar Diego Vera Ustariz
 description: Introduction to Hakyll, a tool for generating static websites. It introduces the basics of Hakyll and describes the first steps to start using it. It presents tips and tricks that you should know in order to start using it successfully.
 ---
