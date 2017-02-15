@@ -1,0 +1,219 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Personal website from Vera Ustariz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Vera Ustariz</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-orange.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+  </head>
+  <body>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+        <div class="demo-back">
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="../index.html" title="go back" role="button">
+            <i class="material-icons" role="presentation">arrow_back</i>
+          </a>
+        </div>
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__normal mdl-color-text--grey-50">
+              <h3>The essence of monads</h3>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+              <div>
+                <span>February 15, 2017</span>
+              </div>
+              <div class="section-spacer"></div>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+              <p>Monads are really a great concept from functional programming that is even used in other programming languages with another names. For example some people says that Promises in Javascript are monads. In F# there is Rail Oriented Programming for error propagation, which turn out to be monads as well. There are several tutorials, blogs and papers around there which try to explain what monads are. I learned a lot reading some of them, however, I still had the question: what is the essence of a monad?.</p>
+<p>Everytime I was reading something about monads I got the feeling that they were just describing a characteristic of a monad or they were describing the implementation details of a monad.</p>
+<p>In this blog I would like to focus on the overview of what monads are without discussing its implementation details.</p>
+<h4 id="purity-and-effects">Purity and effects</h4>
+<p>Monads were introduced in Haskell because they had a problem of expressing functions with effects as pure functions. For example consider the following code written in a non-functional style:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">int</span> <span class="fu">divide</span>(<span class="dt">int</span> a, <span class="dt">int</span> b)
+{
+  <span class="kw">return</span> a%b;
+}</code></pre></div>
+<p>From a functional programming point of view this code is not pure because it says it can divide two integers. However, we know that it would fail when b is zero. In pure functional languages they would like to define the function in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">divide ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
+<p>However, from the view of a pure functional language that function is not pure, because it is not defined when the second argument is zero.</p>
+<p>A pure function is like in mathematics, it is always defined for all the inputs. Pure functions are what we learn at school in mathematics. We get always a result, they do not know about throwing exceptions. Purity is a nice feature because is makes programs more predictable and reading and understanding the code is easily than in non-pure languages.</p>
+<p>A pure function had the following form:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">  f ::</span> a <span class="ot">-&gt;</span> b</code></pre></div>
+<p>It means for any <em>a</em> (it could have more inputs but for simplicity we take just one) give us as a result b.</p>
+<p>Pure languages introduced a trick to convert a non-pure function into a pure function. Saying that a non-pure function is pure if they have the following format:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">  f ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b</code></pre></div>
+<p>M is the context that describes the effect that could make impure our function and at the same time guaranties that the function will always return a defined value. Some people says that the M is like a box that <strong>may</strong> contain a result of a computation when it succeeds or another value when it fails. M is the guarantee that the function will give us always a result.</p>
+<p>Using this trick we can rewrite our function in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">  divide ::</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> <span class="dt">Maybe</span> c</code></pre></div>
+<p>Notice that the most important is that the function returns something in the format <em>M b</em>, the function can have more arguments but the most important is the it returns something of the form <em>M b</em>.</p>
+<p>Maybe is defined in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> <span class="fu">=</span> <span class="dt">Just</span> a <span class="fu">|</span> <span class="dt">Nothing</span></code></pre></div>
+<p>Maybe is an abstract data type that has two constructors Just, which needs an <em>a</em> as input or <em>Nothing</em>. <em>Just</em> is like a box containing a value a and Nothing would be and empty box.</p>
+<p>So, what we described was the motivation to use Maybe as a result instead of an Integer. In that way the function divide is now pure.</p>
+<p>Maybe represents just one type of effect that we can have, the effect here is the absence of a result. However, when we are programming we have more functions with effects like:</p>
+<ul>
+<li><p>Functions with IO functionality. A function that reads a file could return different values, e.g when the content of a file has changed.</p></li>
+<li><p>Mutability. Changing the values of variables cause functions to not be pure anymore. E.g when using global variables. Mutability represents the change of state which is not desireable in functional programming because it is a cause that can make functions impure.</p></li>
+<li><p>Indeterminism. A function of the type a -&gt; [b] can be seen as causing an effect as well, because for a type <em>a</em> produces a list of outputs <em>[b]</em>. Therefore, it is nondeterministic because that function delivers a set of possible results.</p></li>
+</ul>
+<p>Those are just samples of effects, however, in programming there is a lot more effects.</p>
+<h4 id="all-monads-have-have-something-in-common">All monads have have something in common</h4>
+<p>From the previously analized functions we can write them in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Effect: Absence of result</span>
+<span class="ot">f1 ::</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> b
+<span class="co">-- In general it has the form</span>
+<span class="ot">f1::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b
+
+<span class="co">-- Effect: Functions with IO</span>
+<span class="ot">f2 ::</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> b
+<span class="co">-- In general it has the form</span>
+<span class="ot">f2 ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b
+
+<span class="co">-- Effect: Mutability</span>
+<span class="ot">f3 ::</span> (a, s) <span class="ot">-&gt;</span> (b, s)
+<span class="co">-- When applying currying can be seen as</span>
+<span class="ot">f3 ::</span> a <span class="ot">-&gt;</span> s <span class="ot">-&gt;</span> (b, s)
+<span class="co">-- Or it can be seen as well as</span>
+<span class="ot">f3 ::</span> a <span class="ot">-&gt;</span> (s <span class="ot">-&gt;</span> (b, s))
+<span class="co">-- It can be represented as well in the following form</span>
+<span class="ot">f3 ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b
+
+<span class="co">-- Effect Indeterminism</span>
+<span class="ot">f4 ::</span> a <span class="ot">-&gt;</span> [b]
+<span class="co">-- In general it has the form</span>
+<span class="ot">f4 ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b</code></pre></div>
+<p>From all the monads, the one that represents the mutability is known as State monad as well. Maybe for this one is not so easy to see that it has the same format as the other monads. However, with the trick of currying it is possible to see that is similar to the other monads.</p>
+<h4 id="the-essence-of-monads">The essence of monads</h4>
+<p>Now that we have seen that the monads have really the form:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">  f ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> b</code></pre></div>
+<p>Where M represents some embellishment that helped us to convert an impure function into a pure one. Pure function means that for every a the function will give us always a result. The M is the monad that abstract one kind of effect. This effect could be the possible absence of a result, IO, mutability, indeterminism or any other.</p>
+<p>Now the question that we have is how to combine that functions? And another more interesting question would be why do we need to combine them?</p>
+<p>The answer to this question is about what software engineering is or how we as human beings solve problems. What we do to deal with complexity is to split a problem into several small pieces and later we need to combine the small solutions to get the complete solution.</p>
+<p>Every monadic function that has the form <em>a -&gt; M b</em> solves a small problem. However, to get the final solution of a problem we will need to combine several monadic functions that has the form <em>a -&gt; M b</em>.</p>
+<p>And finally we can say that the essence of monads is the <em>composition</em> of function of the form <em>a -&gt; M b</em>. We can see that in the definition of a monad.</p>
+<p>A Monad can be defined as a type class that has two function, the fish operator (&gt;=&gt;) and return.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">  (&gt;=&gt;) ::</span> (a <span class="ot">-&gt;</span> <span class="dt">M</span> b) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> <span class="dt">M</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">M</span> c)
+<span class="ot">  return ::</span> a <span class="ot">-&gt;</span> <span class="dt">M</span> a</code></pre></div>
+<p>In the fish operator we can see that it is really composing two functions <em>a -&gt; M b</em> and the function <em>b -&gt; M c</em>. <em>return</em> converts a non monadic value into a monadic one. Classically a monad is defined using a bind operator (&gt;&gt;=) and return. However, with the previous definition it is easy to see the essence of a monad.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>In this blog we have seen that the essence of monads is the composition of functions that have some effects. The effects could be different. We just mentioned some of them in this blog, because effects can be from different nature.</p>
+<p>This blog contains some theory but it was necessary to help us to understand the nature of monads. The theory help us to make practical things in a better way.</p>
+<p>I did not mention it before but the function of the form <em>a -&gt; M b</em> are known as Kleisli arrows. Using a definition of monads that combine Kleisli arrows helped us as well to see the essence of monads.</p>
+<h4 id="references">References</h4>
+<p><a href="http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf">Monads and functional programming.</a> Philip Wadler, University of Glasgow.</p>
+<p><a href="https://bartoszmilewski.com/2016/11/21/monads-programmers-definition/">Monads: Programmer’s Definition.</a> Bartosz Milewski. Programming Cafe.</p>
+            </div>
+
+            <!-- Start disqus -->
+                <div id="disqus_thread" class="post-disqusThread"></div>
+                <script>
+
+            /**
+              *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+              *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                /*
+                   var disqus_config = function () {
+                   this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                   this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+
+                   };
+                   */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = '//ovu.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+           <!-- End disqus -->
+
+          </div>
+
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+                <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter" onclick="location.href='https://twitter.com/odvera'">
+                  <span class="visuallyhidden">Twitter</span>
+                </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__github" onclick="location.href='https://github.com/ovu'">
+              <span class="visuallyhidden">Github</span>
+            </button>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__linkedin" onclick="location.href='https://de.linkedin.com/in/omarvera'">
+              <span class="visuallyhidden">Linkedin</span>
+            </button>
+          </div>
+        </footer>
+      </main>
+      <div class="mdl-layout__obfuscator"></div>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script>
+      <!-- Wrap the source code elements in a p element to support responsive -->
+      <!-- design and show source code always in width 100% -->
+      function wrap(el, wrapper) {
+            el.parentNode.insertBefore(wrapper, el);
+                wrapper.appendChild(el);
+
+      }
+
+      var elementsCollection = document.getElementsByClassName('sourceCode');
+      var elementsArray = [].slice.call(elementsCollection);
+      elementsArray.forEach(function(element) {
+            if (element.nodeName === 'DIV') {
+              var newElement = document.createElement('p');
+              newElement.setAttribute('class','sourceCodeContainer');
+              wrap(element, newElement);
+            }
+          });
+      <!-- Align subtitle (h4) to the left. Done by wrapping h4 in p elements -->
+      var allTitles = document.getElementsByTagName('h4');
+      var allTitlesArray = [].slice.call(allTitles);
+      allTitlesArray.forEach(function(element) {
+            var newElement = document.createElement('p');
+            newElement.setAttribute('class','post-subtitleContainer');
+            wrap(element, newElement);
+          });
+
+    </script>
+  </body>
+</html>
