@@ -1,7 +1,7 @@
 ---
 title: The essence of monads
 author: Omar Diego Vera Ustariz
-description: Presents and overview of what monads are and describes the main idea of what are monads for
+description: Presents and overview of what monads are and describes the essential characteristic of monads.
 ---
 
 Monads are really a great concept from functional programming that is even used in other programming languages with another names. For example some people says that Promises in Javascript are monads. In F# there is Rail Oriented Programming for error propagation, which turn out to be monads as well.
