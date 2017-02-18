@@ -178,14 +178,13 @@ $ <span class="kw">cp</span> .gitprompt.sh ~/</code></pre></div>
             }
           });
       <!-- Align subtitle (h4) to the left. Done by wrapping h4 in p elements -->
-      var allTitles = document.getElementsByTagName('h4');
+      var allTitles = document.querySelectorAll('h5,h4');
       var allTitlesArray = [].slice.call(allTitles);
       allTitlesArray.forEach(function(element) {
             var newElement = document.createElement('p');
             newElement.setAttribute('class','post-subtitleContainer');
             wrap(element, newElement);
           });
-
     </script>
   </body>
 </html>

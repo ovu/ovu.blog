@@ -17,7 +17,7 @@ main = hakyllWith myConfiguration $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "images/*" $ do
+    match "images/**" $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -37,7 +37,7 @@ main = hakyllWith myConfiguration $ do
             >>= loadAndApplyTemplate "templates/post.html"   postCtx
             >>= relativizeUrls
 
-    match "posts/images/*" $ do
+    match "posts/images/**" $ do
         route idRoute
         compile copyFileCompiler
 

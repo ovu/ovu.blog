@@ -54,69 +54,44 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__normal mdl-color-text--grey-50">
-              <h3>Hakyll first steps</h3>
+              <h3>Improve your productivity with fish shell</h3>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div>
-                <span>November 25, 2016</span>
+                <span>February 19, 2017</span>
               </div>
               <div class="section-spacer"></div>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-              <p>I am really happy to start writing and even more to write something about Hakyll.</p>
-<p>I was looking for a tool to generate static Html content to publish my blog and I found some alternatives, I think the most famous is Jekyll. It is a tool written in ruby that does exactly that, it generates static content. However, I found a really good alternative called Hakyll, which is a tool written in Haskell that offers a DSL to define rules to generate Html.</p>
-<p>I decided to use Hakyll because I wanted to practice some Haskell and to use as well a serious project written in that language.</p>
-<p>My goal is to write my posts in markdown, transform them into Html and to host the content in Github. These teps are what I am going to describe in this post.</p>
-<h4 id="installation-of-hakyll">Installation of Hakyll</h4>
-<p>Hakyll has a good documentation about the installation and first steps. Its website contains some <a href="https://jaspervdj.be/hakyll/tutorials.html">tutorials</a>. I will recommend to read them for the installation and understanding Hakyll.</p>
-<h4 id="creating-the-initial-structure-of-the-blog">Creating the initial structure of the blog</h4>
-<p>Hakyll has a really easy scaffolding feature. Inside the directory where the pages will be generated run the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">hakyll</span> init</code></pre></div>
-<p>After executing the command the following structure will be generated:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tree</span>
-<span class="kw">.</span>
-├── <span class="kw">about.rst</span>
-├── <span class="kw">contact.markdown</span>
-├── <span class="kw">css</span>
-│   └── <span class="kw">default.css</span>
-├── <span class="kw">images</span>
-│   └── <span class="kw">haskell-logo.png</span>
-├── <span class="kw">index.html</span>
-├── <span class="kw">posts</span>
-│   ├── <span class="kw">2012-08-12-spqr.markdown</span>
-│   ├── <span class="kw">2012-10-07-rosa-rosa-rosam.markdown</span>
-│   ├── <span class="kw">2012-11-28-carpe-diem.markdown</span>
-│   └── <span class="kw">2012-12-07-tu-quoque.markdown</span>
-├── <span class="kw">site.hs</span>
-└── <span class="kw">templates</span>
-      ├── <span class="kw">archive.html</span>
-      ├── <span class="kw">default.html</span>
-      ├── <span class="kw">post-item.html</span>
-      └── <span class="kw">post.html</span></code></pre></div>
-<p>The file site.hs contains the rules to convert the markdown files into Html. The rules are described in a DSL written in Haskell. In the tutorial I mentioned above you will find enough information about the rules and how to customize the site.hs according to your needs.</p>
-<p>The generated files are a good starting point to for a blog website. I started modifying it in order to get the version I have now published.</p>
-<p>In order to build the executable of the site.hs run the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> build</code></pre></div>
-<h4 id="serving-and-watching-files">Serving and watching files</h4>
-<p>Something I found really useful was that Hakyll provides a server that can be used to see how the generated pages will see when they are hosted. Not just that, Hakyll has a watch option that checks for changes in the content and generates the Html and host them immediately.</p>
-<p>To host the generated files and watch them while changing just execute the following command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> exec site watch</code></pre></div>
-<h4 id="bonus-publishing-in-github-pages">Bonus: publishing in Github pages</h4>
-<p>By default, Hakyll generates the Html files and css into a directory named _site. Github pages allow publishing in the root of a repository or inside a docs directory. Note that according to the <a href="https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/">Github pages</a> the name of the repository should not have the format <Github user name>.github.io.</p>
-<p>Hakyll is so easy to configure that it can be done in a simple way. Add a configuration variable in the file site.hs</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">myConfiguration::</span> <span class="dt">Configuration</span>
-myConfiguration <span class="fu">=</span> defaultConfiguration 
-                  {
-                    destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
-                  }</code></pre></div>
-<p>The code above overwrites the default destination directory of Hakyll. Then we can use the configuration as follows:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</span> <span class="kw">do</span>
-       <span class="co">-- Here should come your rules</span></code></pre></div>
-<p>Do not forget to configure the Github pages to use the docs directory. And voila! You should have already you website.</p>
+              <p>I work a lot in the command line and after some time I heard of zsh (z shell) and fish shell. So, I decided to take a look at both of them and after a while I decided to stay with fish shell. This blog post shows my favorites features of fish shell.</p>
+<h4 id="why-fish-shell">Why fish shell?</h4>
+<p>Fish means friendly interactive shell. It is really friendly, because after I installed it was already working out of the box. It really follows its principle of batteries included.</p>
+<p>After I installed it I just enter the command fish and I was already using it. The user experience on the command line is not really the same after you use fish.</p>
+<p>Below I list the features I discovered in fish. I did not need to read the documentation to find the features.</p>
+<p>The principles of fish are:</p>
+<ul>
+<li>Batteries included. Without configuration you can start using it.</li>
+<li>Discoverable. You can discover the features while you are using it.</li>
+</ul>
+<h5 id="autocompletion">Autocompletion</h5>
+<p>This first feature I was expecting from fish was the autocompletion and it is really amazing. I just tried the <em>cd</em> and one letter of the directory I had in mind and it realized the directory contains just one subdirectory and it was offering me that in the autocompletion. After pressing the left arrow I have already the command I wanted with the help of fish. <img src="./images/fish/autocompletion.png" title="auto completion" alt="alt text" /></p>
+<p>For changing directories it is not even necessary to write the <em>cd</em> command, you can start writing the name of the directory.</p>
+<h5 id="completion-with-multiple-options">Completion with multiple options</h5>
+<p>The next step I discovered was that fish shows all the options the option is not unique. For example, when a directory contains several directories, fish just shows all of them and let you choose the one you want using the arrow keys. <img src="./images/fish/completion.png" title="completion" alt="alt text" /></p>
+<h5 id="syntax-highlighting">Syntax highlighting</h5>
+<p>The colors in fish help a lot. The commands and the parameters are colored, so you know when they are correct. For example, when a command does not exist it showed in red. <img src="./images/fish/syntaxHighlighting.png" title="Syntax highlighting" alt="alt text" /></p>
+<h5 id="commands-description">Commands description</h5>
+<p>The autocompletion works with commands as well. Fish shows as well the multiple similar commands after pressing the TAB key. What I liked was that it shows the description of the commands. Fish gets all the information of the commands from the man pages. That is why Fish can do autocompletion with commands, show possible commands with its description. <img src="./images/fish/commandsdescription.png" title="Commands description" alt="alt text" /></p>
+<h5 id="discovering-command-parameters">Discovering command parameters</h5>
+<p>The autocompletion works as well with commands parameters. Again, that feature is possible because Fish reads that information from the <em>man</em> pages and it allows you to navigate through the parameters and select the one you are looking for. <img src="./images/fish/commandsparameters.png" title="Command parameters" alt="alt text" /></p>
+<h5 id="search-in-history">Search in history</h5>
+<p>Something I use a lot is to search in the history, I was used to use the Ctrl+R command. That feature in Fish is easier, for example, I want to search a command containing the word <em>git</em>, I just wrote it and I could navigate through the matches using the <em>Up</em> and <em>Down</em> arrow keys. <img src="./images/fish/search.png" title="search in history" alt="alt text" /></p>
+<h4 id="configuration">Configuration</h4>
+<p>The config file of fish is located in <em>~/.config/fish/config.fish</em> . There can be defined aliases or functions or any other configuration. However, for functions it is recommended to create them on the directory <em>~/.config/fish/functions</em>. The convention is that every function should have the same file name. E.g the file myList.fish contains the implementation of the function with the same name <em>myList</em>, which can be used later in the command line.</p>
+<p>Writing in the command line the command <em>fish-config</em> opens a website where a lot of things can be configured, like colors and functions.</p>
 <h4 id="conclusion">Conclusion</h4>
-<p>Hakyll is a really good documented tool that can be used to generate static pages. It has a very intuitive DSL for defining the generation rules. At the beginning, I mentioned I wanted to use it in order to practice Haskell. However, it is not necessary to program in Haskell to have it running, at least in the beginning.</p>
-<p>Publishing the generated pages in Github were easy as well. I will continue adding features to the blog and maybe I will discover more features of Hakyll and learn more about it.</p>
+<p>Fish is a shell that is ready to be used on the daily work. It is a really friendly shell that can be used as it is just after installation. Of course it can be configured according to your needs. There is a project called <a href="https://github.com/oh-my-fish/oh-my-fish">Oh my fish</a> that has a lot of plugins.</p>
+<p>The scripting language is minimalistic but really comprehensive, you can find a comparison of bash shell and fish shell scripting language in <a href="https://en.wikipedia.org/wiki/Friendly_interactive_shell">wikipedia</a>. And the <a href="https://fishshell.com/">fish website</a> contains a lot of documentation as well.</p>
             </div>
 
             <!-- Start disqus -->
@@ -182,14 +157,13 @@ main <span class="fu">=</span> hakyllWith myConfiguration <span class="fu">$</sp
             }
           });
       <!-- Align subtitle (h4) to the left. Done by wrapping h4 in p elements -->
-      var allTitles = document.getElementsByTagName('h4');
+      var allTitles = document.querySelectorAll('h5,h4');
       var allTitlesArray = [].slice.call(allTitles);
       allTitlesArray.forEach(function(element) {
             var newElement = document.createElement('p');
             newElement.setAttribute('class','post-subtitleContainer');
             wrap(element, newElement);
           });
-
     </script>
   </body>
 </html>
