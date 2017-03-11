@@ -72,7 +72,7 @@ Maybe represents just one type of effect that we can have, the effect here is th
 
 Those are just samples of effects, however, in programming there is a lot more effects.
 
-#### All monads have have something in common
+#### All monads have something in common
 From the previously analized functions we can write them in the following way:
 
 ``` Haskell
