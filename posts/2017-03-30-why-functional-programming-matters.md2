@@ -1,0 +1,307 @@
+---
+title: Why functional programming matters
+author: Omar Diego Vera Ustariz
+description: Reflections about functional programming, what is functional programming and when can it be used.
+---
+
+After talking with some people about functional programming I noticed that there are some misconceptions about it and I did some research about it trying to put in order the concepts.
+That is why, I decided to write in this blog a summary about what is functional programming about and which solutions it brings. It is not a formal blog entry, it is oriented to working programmers. I am saying that because mathematicians will have more precise definitions about the topic, which I am not covering here.
+
+#### What is functional programming
+
+Grep Michaelson in his book "An introduction to Functional Programming through lamdba calculus" defines functional programming in the following way:
+*'Functional programming is an approach to programming based on function calls as the primary programming construct'*.
+
+I like that definition because it presents the essentials of functional programming which is the function. Here starts the misconceptions because different people understand in a different way what a function is.
+Programming languages like C, Java or even Cobol, Pascal or Basic have as well functions. Therefore, some people think I can do functional programming in those languages as well. However, that is not true. The reason is that in functional programming a function *must* always return a value. In the definition above function refers to the mathematical definition of a function.
+
+For example, below it is presented a sample function which accepts one parameter as inputs and always returns a value. That is called as well a *pure function*, because for the same input it will give us the same output. That concept of function is Zen, because it looks easy but it requires a change in your mindset to understand and start using it.
+
+``` Haskell
+  sampleFunction :: Int -> Int
+  sampleFunction a = a + 1
+```
+
+Maybe mathematicians will say that a function is just *modus ponens*, or in other words implication in logic, A implies B. A -> B. Or in other words, given an A the conclusion is B. 
+
+#### Functions and complexity
+
+The readability of code is something really important in software engineering, we write code that will be read several times. We are not just writing code that the computer will understand, we are writing code that someone else can understand.
+
+In the previous section I said that using pure function is Zen, because it requires a lot of practice and another mindset. One characteristic of *pure functions* is the readability, because the parameters already tells a lot of what the function does, pure functions do not use global variables, they do computations based on his inputs and nothing else.
+
+Consider the following sample code that is really used in imperative style:
+
+``` Java
+  public void updateAverage() 
+  {
+    averageScore = calculateAverageScore(students);
+  }
+```
+
+For an imperative programmer the code above would be ok. The method *updateAverage* is inside a class, notice that *students* and *averageScore* are global variables. In programming there is the concept of encapsulation, which means we should hide implementation details. In that way we can deal with complexity, because we are hiding the implementation details, we are sure that the piece of code that is encapsulated does its job. 
+
+In the sample above we are trusting that the method *calculateAverageScore* is calculating the average score of the students, but we do not know how is it achieving that. Maybe it is making a query in the database, maybe it is getting the results from a webservice using http. 
+
+Another characteristic of pure functions is that they follow the unix philosophy, a pure function *does one thing and do it well*. The method *updateAverage* is doing two things, it is calculating the average of the score and updating the global variable average score. 
+
+A functional programmer will try to use pure functions in order to define the same function above.
+
+``` Haskell
+  calculateAverage :: Course -> [Student] -> Int
+  calculateAverage course  students = calculateAverageScore course  students
+
+  let averageScope = calculateAverage course students
+```
+
+The definition of the function already tell us what it does, we even do not need to see the implementation. The function *calculateAverage* must be calculating the average score of the students in a Course. The implementation is as well more readable than the imperative version. The definition of the function is already revealing its intentions and implementation shows more details.
+
+The imperative version increased the accidental complexity, because it is making difficult to understand what is the method doing. Of course the imperative version can be improved to make it more understandable. A seasoned developer will say that that is really not a good imperative code. However, the imperative paradigm allows that and if it is allowed it is for sure going to be used. 
+
+In functional programming there is not another way to declare a function giving all the parameters it needs. It makes code more readable and it even give us a well documented code.
+
+#### Expressions
+
+In imperative programming a program is defined as a set of steps where the execution order is very important. For example let us consider a simple program that swaps two variables.
+
+``` Java
+public swap(Int a, Int b) 
+{
+  var x = a;
+  a = b;
+  b = x; 
+}
+```
+
+In the program above the order of execution is important. The steps cannot be altered. That is because in an imperative style we are saying step by step what the computer should do. That is why the order of the steps cannot be changed.
+
+However, functional programming is declarative. It means we do not write all the steps that the computer should execute but we describe what is our goal.
+
+A program in functional programming is a expression. It means it is a function that may be calling other functions. However, a expression will always return a value.
+
+```Haskell
+  let sampleFunction a b = fun1 (fun2 (fun3 a) (fun4 b))
+```
+
+One characteristic of the expressions is that they do not need to be executed sequentially. It means that fun3 and fun4 could be executed in parallel. Thaat is why, functional programming is so good for parallel programming.
+
+I just want to mention that the lambda calculus is used make computation using expressions. It defines rules for reducing an expression into the final result. However, that is out of the scope of the blog post.
+
+[//]: # Equational reasoning?
+
+#### Mutation
+
+We usually learn programming in an imperative language. There is a lot of books about analysis of algorithms, data structures and algorithms in general that present code or pseudo code in an imperative style. We are used to declare variables and that variables can change their content. Programmers spent a long time debugging code and trying to see which is the value of a variable in a certain point of time. That is even worst if the program is concurrent or multi-threaded. It makes difficult to see who changed the value of a variable.
+
+The definition of functional programming we have shown above does not says anything explicit about mutation. However, we said that the functions are defined in a mathematical sense, it means the inputs and outputs are inmutable. The functions cannot change the inputs and the result can be assigned to a variable, however this variable is immutable. 
+
+From a practical point of view Immutability is a good characteristic which helps to understand a programm and reduces as well its accidental complexity. It makes easier to make changes in the software and makes software more deterministic in a concurrent environment.
+
+[//]: # Type mutation
+
+#### Algebraic data types
+There are some functional languages that are strong typed or dynamic typed. Examples of strong typed are haskell, F# and Scala. Examples of dynamic typed are Elixir or Lisp.
+However, independent if they are strong typed or dynamic typed they offer abstract data types (ADT). 
+
+Algebraic data types are types that can be created combining other types. The basic constructs that are using to create types are *sum types* and *product types*. Algebraic data types can be recursive as well.
+
+The most simple product type is a tuple.
+``` Haskell
+data Pair a b = MakePair a b
+
+let myPair = MakePair "Hello" "World"
+```
+
+The equivalent in an Object Oriented Programming language would be:
+``` cs
+public class Pair<A, B>
+{
+  public A first;
+  public B second;
+  public MakePair(A a, B b)
+  {
+    first = a;
+    second = b; 
+  } 
+}
+```
+Notice that it is difficult to make a one to one translation from an algebraic data type into an Object Oriented language. It is like learning a new language that it is not our mother talk. At the beginning we want to translate everything into the language we know. However, it is better to start thinking in the logic of the other language.
+
+In order to be fair with the translation we would require to define two functions that give us the first and the second of a tuple.
+
+``` Haskell
+  first :: Pair -> a
+  fist (Pair a b) = a
+  second (Pair a b) = b
+```
+
+The implementation of first and second are using *pattern matching*. It is a technique to look inside the structure of a data type in order to implement functions.
+
+The basic sample of a *sum type* is the definition of a Bool type, which can be *True* or *False*
+
+``` Haskell
+data Bool = True | False
+```
+
+In Object Oriented Programming there is no direct representation of a sum type. One way to implement it in and Object Oriented language would be.
+
+``` cs
+public abstract class Bool{}
+public class True : Bool {}
+public class False : Bool {}
+```
+
+Algebraic data types can be recursive as well. For example the definition of a *List* would be:
+
+```Haskell
+data List a = EmptyList | Const a ( List a )
+
+-- Empty list
+let myList = EmptyList 
+
+-- List with one element
+let secondList = Const 1 EmtpyList
+
+-- List with two elements
+let thirdList = Const 1 (Const 2 EmptyList)
+```
+
+The definition of a List is saying that a list could be *EmptyList* or it can be constructed using the constructor Const, which contains one element of type *a* and the second element is the rest of the *List*, which is a *List* as well, here is where the List is being constructed recursively.
+
+Why are Algebraic data types important? In the next sections you will see the power of algebraic data types.
+
+#### Domain Driven Design
+Every application has a central part that is known as the *Domain* of the application. It is the abstraction of the application and it contains the information about the data that flows inside it.
+
+Let us consider the following example in Object Oriented Programming.
+
+``` cs
+public class Person
+{
+  public string Name { get; private set; }
+  public string LastName { get; private set; }
+  public string Email { get; private set; }
+  private bool IsValidEmail { get; set; }
+
+  public Person(string name, string lastName, string email)
+  {
+    Name = name;
+    LastName = lastName;
+    Email = email; 
+  }
+  
+  public void SetIsValidEmail(bool isValid)
+  {
+    IsValidEmail = isValid;
+  }
+}
+```
+
+By doing a one to one translation we would have the following version in a functional style.
+
+``` Haskell
+data Person = Person { name :: String , 
+                       lastName :: String, 
+                       email :: String,
+                       isValidEmail :: bool
+                      }
+```
+
+However, in function programming we can do it better. The *Domain Model* is used for communicating, it is an ubiquitous language that not only developers should understand it but product managers and other people as well. 
+
+Let us suppose the product managers decide that the *name* and *lastName* cannot be greater than 50 characters. How can we represent that in the domain model?. In functional programming that is really easy.
+
+``` Haskell
+data Person = Person { name :: String50,
+                       lastName :: String50,
+                       email :: ValidatedEmail
+                       } deriving Show
+```
+
+That is a more precise version of the previous one. This version communicates more about the properties of a *Person* type. Below are the details of the definition of *String50*, which means the length of the string cannot be greater than 50. *Validated* email gives the information that the it contains an email, which is validated.
+
+``` Haskell
+data String50 = Error | Correct String deriving Show
+
+createString50 :: String -> String50
+createString50 theName = if (length (theName) >= 50) 
+                         then Error
+                         else Correct theName
+
+type Email = String
+
+data ValidatedEmail = Valid Email | InvalidEmail Email deriving Show
+```
+
+In Object Oriented Programming can be reached the same result we got with algebraic data types. However, it will require several classes to represent it and it will be not easy to undertand for non technical people. Algebraic data types are more expressive when describing a domain model.
+
+#### Error handling
+In several programming languages the error handling is done by throwing exceptions. However, functional programming provides a new way to manage and propagate errors. 
+
+Let us consider the following method defined in an imperative style.
+
+``` cs
+public Divide (int aNumber, int divisor)
+{
+  if (divisor == 0)
+  {
+    throw new Exception("Division by zero is not allowed");
+  }
+  return aNumber / divisor;
+}
+```
+
+The difinition of the function says that it can devide any number by a divisor. However, it does not communicate that it will throw an exception when the divisor is zero. So, that definition is a lie because the declaration does not says anything about the exception. It could be called with a *divisor* with value zero and the caller of the function will get a surprise if it is waiting for the exception.
+
+In functional programming there is the data type *Maybe*, which can be used to return *Nothing* when a function cannot return a value.
+``` Haskell
+data Maybe a = Nothing | Just a
+```
+
+Notice that *Maybe* is a sum type. It can be constructed by using the constructor *Nothing* or *Maybe*, which can contain a value of any type. 
+
+By rewriting the function above using *Maybe* we get the following definition of the function devide.
+
+``` Haskell
+devide :: Int -> Int -> Maybe Int
+devide aNumber 0 = Nothing
+devide aNumber divisor = Just (aNumber `div` divisor)
+```
+
+The definition of the function already says what it does, it devides two numbers and *Maybe* it will give us a result.
+
+What if we want to give more information about the error? In a functional language it can be done easily. For example, let us add the requirement that the *devide* function should only work with positive values. The result will be something like this.
+
+``` Haskell
+devide :: Int -> Int -> DivisionResult
+devide a b
+  | b == 0 = DivisionByZero
+  | a < 0 = DividentIsNotPositive
+  | b < 0 = DivisorIsNotPositive
+  | otherwise = Success ( a `div` b )
+
+data DivisionResult = Success Int | DivisionByZero | DividentIsNotPositive | DivisorIsNotPositive deriving Show
+```
+
+The code above is like runnable documentation. It is short and really understandable.
+
+Several Imperative languages have the *Null Reference* as a way to represent the absence of a value. The function we described before could have a null as output to represent that the function could not execute with the provided inputs. However, the author of the Null Refereces, C.A.R Hoare declared that the introduction of Null references was [a billion dollar mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare), that even his friend Edsger Dijkstra *'thought the null reference was a  bad idea. He said:If you have a null reference, then every bachelor who you represent in your object structure will seem to be married polyamocursly to the same person Null. It brings back the same question whether you want to run your code quickly (without checks) or safely (with checks). I did know there was a solution based on the idea of discrimination of objects belong to a disjoint union class; that is, two sets in which there are no members in common.'*
+
+The discrimination of objects tha C.A.R Hoare is talking about are the sum types, which were presented above. 
+
+#### Composition
+Composition is one of the ideas that help us to solve complex problems. The way we solve problems is by dividing it in small problems, solving every small problems and then composing every single solution to get the final solution.
+
+Functional programming facilitates the composability of *algebraic data* types and *functions*.
+Algebraic data types
+Sample of data types dog with race and cat
+Functions
+
+#### Pattern matching
+Decomposing values
+
+#### Iterations
+
+Origami programming
+
+#### Curry-Howard isomorphism
