@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://veraustariz.com/</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/archive.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/about.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/posts/2017-02-19-fish-shell.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/posts/2017-02-15-the-essence-of-monads.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/posts/2016-12-12-git-prompt.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/posts/2016-11-25-building-a-blog-with-hakyll.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://veraustariz.com/index.html</loc>
+  <lastmod>2017-03-27T20:18:03+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

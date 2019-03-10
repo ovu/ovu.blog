@@ -17,6 +17,14 @@ main = hakyllWith myConfiguration $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "robots.txt" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "sitemap.xml" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "images/**" $ do
         route   idRoute
         compile copyFileCompiler
